@@ -39,7 +39,7 @@ const Product = () => {
                   className="object-cover rounded-lg"
                 />
               )}
-              <div className="text-center mt-4 bg-gray-950 hover:bg-gray-400">
+              <div className="text-center mt-4 ">
                 <h1 className="text-lg font-bold">{item.title}</h1>
                 <p className="text-2xl font-light">${item.price}</p>
                 <Link href="/cart">
