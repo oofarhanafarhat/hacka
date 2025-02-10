@@ -12,7 +12,7 @@ export default async function Category() {
   const features = await categoryContent();
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px]">
     <div className="w-full max-w-[1300px] mx-auto px-4 lg:px-0">
      
 

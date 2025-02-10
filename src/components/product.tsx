@@ -20,7 +20,7 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
   }, []);
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px] ">
       <div className="w-full max-w-[1300px] mx-auto px-4 lg:px-0">
         <div className="font-bold px-6 py-4 text-4xl">
           <h1 className="mt-6 text-center lg:text-start">All Products</h1>
@@ -38,7 +38,7 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
                   className="object-cover rounded-lg"
                 />
               )}
-              <div className="text-center mt-4">
+              <div className="text-center mt-4 bg-gray-950 hover:bg-gray-400">
                 <h1 className="text-lg font-bold">{item.title}</h1>
                 <p className="text-2xl font-light">${item.price}</p>
                 <Link href="/cart">

@@ -29,7 +29,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <div className=" w-full max-w-[1400px] mx-auto">
+    <div className=" w-full max-w-[1400px]">
     <div className=" max-w-6xl  mx-auto p-8">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Questions? Look Here

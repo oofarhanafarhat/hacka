@@ -32,7 +32,7 @@ export default function Chair() {
   }, []);
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px] ">
     <section className="flex mt-8  w-full lg:w-[1300px] justify-center items-center" >
     
            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 ml-4">

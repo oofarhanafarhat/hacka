@@ -25,7 +25,7 @@ export default function Contact() {
   
 
   return (
-    <div className=" w-full max-w-[1400px] mx-auto bg-gray-100 flex flex-col justify-center items-center p-6">
+    <div className=" w-full max-w-[1400px] bg-gray-100 flex flex-col justify-center items-center p-6">
       <div>
 <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Get in Touch With Us</h2>
 <p className="text-gray-600 mb-8 text-center">For information about our services, feel free to contact us!</p>

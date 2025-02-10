@@ -30,7 +30,7 @@ export default function Newsletter() {
   };
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px]">
     <div className="max-w-md mx-auto mt-10 bg-gray-100 p-6 rounded-lg shadow-md text-center">
       <h2 className="text-xl font-semibold">Subscribe to Our Newsletter</h2>
       <p className="text-gray-600 text-sm mt-2">Stay updated with our latest products & offers.</p>

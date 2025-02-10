@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full max-w-[1400px] mx-auto">
+    <nav className="w-full max-w-[1400px] ">
       <div className="w-full lg:w-[1400px] bg-[#272343] text-white py-2 px-4">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-sm">Free shipping on all orders over $50</h1>
@@ -29,7 +29,7 @@ export default function Navbar() {
 
     
           <div className="hidden md:block">
-           <Link href={"/cart"}> <Image src="/cart.png" width={120} height={44} alt="Cart" /></Link>
+           <Link href={"/cart.png"}> <Image src="/cart.png" width={120} height={44} alt="Cart" /></Link>
           </div>
         </div>
       </div>

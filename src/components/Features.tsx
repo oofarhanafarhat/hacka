@@ -12,7 +12,7 @@ export default async function FeatureSection() {
   const features = await featureContent();
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px]">
     <div className="w-full max-w-[1300px] mx-auto px-4 lg:px-0">
       <div className="w-full flex justify-center">
         <Image src="/c1.png" width={1300} height={139} alt="Company Logo" />

@@ -2,7 +2,7 @@
 import Image from "next/image";
 export default function Instagram() {
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px] ">
     <div className="max-w-5xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md text-center">
       <h2 className="text-xl font-semibold">Follow us on Instagram</h2>
       <p className="text-gray-600 text-sm mt-2">Check out our latest updates!</p>

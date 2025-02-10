@@ -12,7 +12,7 @@ export default async function HeroSection() {
   const hero = await getHeroContent();
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto">
+    <div className="w-full max-w-[1400px]">
     <div className="flex flex-col lg:flex-row items-center justify-around lg:w-[1300px] lg:h-[850px] mx-auto text-[#000000] bg-[#F0F2F3] p-8">
       {hero?.map((item: any, index: any) => (
         <div

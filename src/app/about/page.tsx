@@ -3,13 +3,13 @@ import Image from "next/image";
 
 const AboutPage = () => {
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+    <div className="w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 mt-10">
       <section className="lg:flex justify-center items-center gap-4">
         <Image src="/text.png" width={672} height={470} alt="text" priority />
        
         <div className="flex justify-center items-center">
           <Image
-            src="/f1.png"
+            src="/f1.png" 
             width={600}
             height={420}
             alt="Chair"
