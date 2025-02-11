@@ -41,7 +41,7 @@ export default async function FeatureSection() {
         
             <div className="text-center mt-4">
               <h1 className="text-lg font-light">{item.heading}</h1>
-              <p className="text-2xl font-bold">{item.price}</p>
+              <p className="text-2xl font-bold"> RS.  {item.price}</p>
             </div>
           </div>
         ))}

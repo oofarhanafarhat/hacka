@@ -1,11 +1,9 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-
 const Product = () => {
   const [data, setData] = useState([]);
 
@@ -19,38 +17,53 @@ const Product = () => {
 
   return (
     <div className="w-full max-w-[1400px]">
-      <div className="w-full max-w-[1300px] mx-auto px-4 lg:px-0">
+      <div className="w-full max-w-[1400px] justify center items-center px-4 lg:px-0">
         <div className="font-bold px-6 py-4 text-4xl">
           <h1 className="mt-6 text-center lg:text-start">All Products</h1>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 justify-center items-center" >
           {data?.map((item: any, index: number) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-around bg-gray-100 p-6 rounded-lg shadow-md"
+              className="w-[312px] flex flex-col items-center lg:items-start bg-gray-100 p-4 rounded-lg shadow-md"
             >
               {item.image && (
-                <Image
-                  src={urlFor(item.image)?.url() || "/placeholder.png"}
-                  alt="product Image"
-                  width={300}
-                  height={300}
-                  className="object-cover rounded-lg"
-                />
+                <div className="w-full h-[200px] flex   items-center lg:items-start justify-center overflow-hidden rounded-lg">
+                  <Image
+                    src={urlFor(item.image)?.url() || "/placeholder.png"}
+                    alt="product Image"
+                    width={312}
+                    height={200}
+                    className="object-cover"
+                  />
+                </div>
               )}
-              <div className="text-center mt-4 ">
+              
+              <div className="w-full flex items-center lg:items-start justify-between mt-4 px-2">
                 <h1 className="text-lg font-bold">{item.title}</h1>
-                <p className="text-2xl font-light">${item.price}</p>
-                <Link href="/cart">
-                  <button className="px-4 py-2 text-[#000000] hover:text-blue-500 rounded-3xl shadow-lg">
-                    {item.button}
-                  </button>
-                </Link>
+                <Image
+                  src="/cart1.png" 
+                 alt="cart"
+                  width={15}
+                  height={15}
+                  className="ml-2"
+                />
               </div>
+
+              <p className="text-xl font-semibold mt-1 px-2 text-center lg:text-center ">${item.price}</p>
+
+              <Link href={"/cart.png"}>
+                <button className="w-full mt-4 py-2 px-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">
+                  {item.button}
+                </button>
+              </Link>
             </div>
           ))}
         </div>
+
+    
+        
       </div>
     </div>
   );

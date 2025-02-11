@@ -51,7 +51,7 @@ const Cart: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-[1400px]">
+    <div className="w-full max-w-[1400px] justify-center items-center">
     <div className="max-w-7xl mx-auto p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div className="md:col-span-2">
         <h1 className="text-3xl font-bold mb-6">Bag</h1>
