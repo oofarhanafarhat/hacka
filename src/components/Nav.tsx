@@ -29,7 +29,7 @@ export default function Navbar() {
 
     
           <div className="hidden md:block">
-           <Link href={"/cart.png"}> <Image src="/cart.png" width={120} height={44} alt="Cart" /></Link>
+           <Link href={"/cot.png"}> <Image src="/cart.png" width={120} height={44} alt="Cart" /></Link>
           </div>
         </div>
       </div>
