@@ -45,7 +45,9 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
               )}
               
               <div className="w-full flex items-center lg:items-start justify-between mt-4 px-2">
-                <h1 className="text-lg font-bold">{item.title}</h1>
+                <h1 className="text-lg font-bold text-center  lg:text-start 
+                  
+                  ">{item.title}</h1>
                 <Image
                   src="/cart1.png" 
                  alt="cart"
