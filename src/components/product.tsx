@@ -59,7 +59,7 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
 
               <p className="text-xl font-semibold mt-1 px-2 text-center lg:text-center ">${item.price}</p>
 
-              <Link href={"/cart.png"}>
+              <Link href={"/cart"}>
                 <button className="w-full mt-4 py-2 px-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">
                   {item.button}
                 </button>
