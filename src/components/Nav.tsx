@@ -7,115 +7,76 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full max-w-[1400px] ">
-      <div className="w-full lg:w-[1400px] bg-[#272343] text-white py-2 px-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-sm">Free shipping on all orders over $50</h1>
-          <div className="space-x-4 text-sm">
-            <span>Faqs</span>
-            <span>Need Help</span>
+    <nav className="w-full bg-white shadow-sm dark:bg-gray-900">
+      {/* Top bar */}
+      <div className="bg-[#272343] text-white text-sm py-2 px-4">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
+          <span>Free shipping on all orders over $50</span>
+          <div className="space-x-4">
+            <span className="hover:underline cursor-pointer">FAQs</span>
+            <span className="hover:underline cursor-pointer">Need Help</span>
           </div>
         </div>
       </div>
 
-    
-      <div className="w-full bg-[#F0F2F3]">
-        <div className="container mx-auto flex justify-between items-center py-4 px-4">
-          
-          <div className="flex items-center space-x-2">
+      {/* Middle Logo + Cart */}
+      <div className="bg-[#F0F2F3]">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center py-4 px-4">
+          <div className="flex items-center gap-2">
             <Image src="/logo.png" width={27} height={24} alt="Logo" />
-            <span className="font-semibold text-xl text-[#000000]">Comforty</span>
+            <span className="text-xl font-semibold text-black">Comforty</span>
           </div>
 
-    
-          <div className="hidden md:block">
-           <Link href={"/cart"}> <Image src="/cot.png" width={120} height={44} alt="Cart" /></Link>
-          </div>
+          <Link href="/cart" className="hidden md:block">
+            <Image src="/cot.png" width={120} height={44} alt="Cart Icon" />
+          </Link>
         </div>
       </div>
 
-      
-      <div className="bg-white">
-        <div className="container mx-auto flex justify-between items-center py-4 px-4">
-        
+      {/* Main nav links */}
+      <div className="bg-white border-t dark:bg-gray-800">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center py-4 px-4">
+          {/* Hamburger Menu */}
           <div className="md:hidden">
             <button
+              aria-label="Toggle menu"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 focus:outline-none"
+              className="text-gray-800 dark:text-white focus:outline-none"
             >
               {isOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
               )}
             </button>
           </div>
 
-        
-          <div
-            className={`${
-              isOpen ? "block" : "hidden"
-            } md:flex items-center space-x-8`}
-          >
-            <Link
-              href="/"
-              className="text-gray-800 hover:text-blue-900 transition duration-300 hover:shadow-lg hover:border-b border-gray-900"
-            >
+          {/* Navigation Links */}
+          <div className={`${isOpen ? "block" : "hidden"} md:flex items-center space-y-4 md:space-y-0 md:space-x-8`}>
+            <Link href="/" className="nav-link">
               Home
             </Link>
-            <Link
-              href="/pro"
-              className="text-gray-800 hover:text-blue-900 transition duration-300 hover:shadow-lg hover:border-b border-gray-900"
-            >
+            <Link href="/pro" className="nav-link">
               Shop
             </Link>
-            <Link
-              href="/shop"
-              className="text-gray-800 hover:text-blue-900 transition duration-300 hover:shadow-lg hover:border-b border-gray-900"
-            >
+            <Link href="/shop" className="nav-link">
               Product
             </Link>
-            <Link
-              href="/faq"
-              className="text-gray-800 hover:text-blue-900 transition duration-300 hover:shadow-lg hover:border-b border-gray-900"
-            >
+            <Link href="/faq" className="nav-link">
               Pages
             </Link>
-            <Link
-              href="/about"
-              className="text-gray-800 hover:text-blue-900 transition duration-300 hover:shadow-lg hover:border-b border-gray-900"
-            >
+            <Link href="/about" className="nav-link">
               About
             </Link>
+            {/* Show cart on small screens too */}
+            <Link href="/cart" className="md:hidden block">
+              <Image src="/cot.png" width={100} height={40} alt="Cart Icon" />
+            </Link>
           </div>
-
-        
         </div>
       </div>
     </nav>

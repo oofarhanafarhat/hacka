@@ -9,42 +9,47 @@ const categoryContent = async () => {
 };
 
 export default async function Category() {
-  const features = await categoryContent();
+  const categories = await categoryContent();
 
   return (
-    <div className="w-full max-w-[1400px]">
-    <div className="w-full max-w-[1400px]  px-4 lg:px-0">
-     
-
-      <div className="font-bold px-6 py-4  text-4xl ">
-        <h1 className="mt-6 text-center lg:text-start">Top categories</h1>
-      </div>
-      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 ">
-        {features?.map((item: any, index: number) => (
-          <div
-            key={index}
-            className="flex flex-col items-center justify-around bg-gray-100 p-6 rounded-lg shadow-md w-full"
-          >
-            
-            {item.image && (
-              <Image
-                src={urlFor(item.image).url()}
-                alt="Feature Image"
-                width={300}
-                height={300}
-                className="object-cover rounded-lg"
-              />
-            )}
-
+    <section className="w-full py-12 bg-white dark:bg-gray-900">
+      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         
-            <div className="text-center mt-4">
-              <h1 className="text-lg font-bold">{item.heading}</h1>
-              <p className="text-2xl font-light">  { item.subheading}</p>
+        {/* Section Heading */}
+        <div className="mb-10">
+          <h2 className="text-3xl font-bold text-center lg:text-left text-gray-800 dark:text-white">
+            Top Categories
+          </h2>
+        </div>
+
+        {/* Category Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {categories?.map((item: any, index: number) => (
+            <div
+              key={index}
+              className="flex flex-col items-center text-center bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all p-6"
+            >
+              {item.image && (
+                <Image
+                  src={urlFor(item.image).url()}
+                  alt={item.heading || "Category Image"}
+                  width={300}
+                  height={300}
+                  className="rounded-lg object-cover w-full h-[220px]"
+                />
+              )}
+              <div className="mt-4">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                  {item.heading}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-md mt-1">
+                  {item.subheading}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-    </div>
+    </section>
   );
 }

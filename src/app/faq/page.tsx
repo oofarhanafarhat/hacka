@@ -14,49 +14,46 @@ export default function FAQ() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchFaqs() {
+    const fetchFaqs = async () => {
       try {
-        const data = await client.fetch(`*[_type == "faq"]`);
+        const data: FAQItem[] = await client.fetch(`*[_type == "faq"] | order(_createdAt desc)`);
         setFaqs(data);
       } catch (error) {
         console.error("Sanity fetch error:", error);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchFaqs();
   }, []);
 
   return (
-    <div className=" w-full max-w-[1400px] justify-center items-center">
-    <div className=" max-w-6xl mx-auto  p-8">
-      <h1 className="text-4xl font-bold mb-6 text-center">
-        Questions? Look Here
-      </h1>
-      <p className="text-gray-500 mb-10 text-center">
-        Lorem ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </p>
+    <div className="w-full max-w-[1400px] mx-auto px-4 py-10">
+      <div className="max-w-6xl mx-auto text-center">
+        <h1 className="text-4xl font-bold mb-4">Questions? Look Here</h1>
+        <p className="text-gray-500 mb-10">
+          Find answers to some of the most frequently asked questions.
+        </p>
+      </div>
 
       {loading ? (
-        <p className="text-center">Loading...</p>
+        <p className="text-center text-teal-600">Loading...</p>
       ) : faqs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {faqs.map((faq) => (
             <div
               key={faq._id}
-              className="p-6 border rounded-lg shadow hover:shadow-lg transition-shadow duration-300"
+              className="bg-white p-6 border rounded-lg shadow-sm hover:shadow-md transition"
             >
-              <h2 className="font-semibold text-xl mb-2">{faq.question}</h2>
-              <p className="text-gray-600">{faq.answer}</p>
+              <h2 className="text-xl font-semibold mb-2">{faq.question}</h2>
+              <p className="text-gray-700">{faq.answer}</p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500">No FAQs available.</p>
+        <p className="text-center text-gray-500">No FAQs available at the moment.</p>
       )}
-    </div>
     </div>
   );
 }

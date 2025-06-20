@@ -12,41 +12,52 @@ export default async function FeatureSection() {
   const features = await featureContent();
 
   return (
-    <div className="w-full max-w-[1400px]">
-    <div className="w-full max-w-[1300px] mx-auto px-4 lg:px-0">
-      <div className="w-full flex justify-center">
-        <Image src="/c1.png" width={1300} height={139} alt="Company Logo" />
-      </div>
+    <section className="py-16 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4">
+        {/* Optional Top Banner */}
+        <div className="flex justify-center mb-10">
+          <Image
+            src="/c1.png"
+            width={1300}
+            height={139}
+            alt="Featured Products Banner"
+            className="rounded-md shadow-md w-full max-w-5xl h-auto"
+          />
+        </div>
 
-      <div className="font-bold px-6 py-4  text-4xl ">
-        <h1 className="mt-6 text-center lg:text-start">Featured Products</h1>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 ">
-        {features?.map((item: any, index: number) => (
-          <div
-            key={index}
-            className="flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-md w-full"
-          >
-            
-            {item.image && (
-              <Image
-                src={urlFor(item.image).url()}
-                alt="Feature Image"
-                width={300}
-                height={300}
-                className="object-cover rounded-lg"
-              />
-            )}
+        {/* Heading */}
+        <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
+          Featured Products
+        </h2>
 
-        
-            <div className="text-center mt-4">
-              <h1 className="text-lg font-light">{item.heading}</h1>
-              <p className="text-2xl font-bold"> RS.  {item.price}</p>
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features?.map((item: any, index: number) => (
+            <div
+              key={index}
+              className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 flex flex-col items-center shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              {item.image && (
+                <Image
+                  src={urlFor(item.image).url()}
+                  alt={item.heading || `Product ${index + 1}`}
+                  width={300}
+                  height={300}
+                  className="rounded-lg object-cover w-full h-auto"
+                />
+              )}
+              <div className="text-center mt-4 space-y-1">
+                <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
+                  {item.heading}
+                </h3>
+                <p className="text-xl font-bold text-blue-600">
+                  Rs. {item.price}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-    </div>
+    </section>
   );
 }
