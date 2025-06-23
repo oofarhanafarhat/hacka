@@ -41,7 +41,7 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
           {data?.map((item, index) => (
             <div
               key={index}
-              className="w-full flex flex-col items-center lg:items-start bg-gray-100 p-4 rounded-lg shadow-md"
+              className=" hover:translate-y-5 w-full flex flex-col items-center lg:items-start bg-gray-100 p-4 rounded-lg shadow-md"
             >
               {item.image && (
                 <div className="w-full h-[200px] flex justify-center overflow-hidden rounded-lg">
@@ -56,7 +56,7 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
               )}
 
               <div className="w-full flex justify-between items-center mt-4 px-1">
-                <h2 className="text-lg font-bold">{item.title}</h2>
+                <h2 className="text-md font-bold text-gray-800">{item.title}</h2>
                 <Image
                   src="/cart1.png"
                   alt="Add to cart icon"
@@ -65,10 +65,10 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
                 />
               </div>
 
-              <p className="text-xl font-semibold mt-1 px-1">${item.price}</p>
+              <p className="text-xl font-semibold mt-1 px-1 text-gray-800">${item.price}</p>
 
               <Link href="/cart" className="w-full">
-                <button className="w-full mt-4 py-2 px-4 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 transition">
+                <button className="w-full mt-4 py-2 px-4 bg-gray-500  text-white rounded-md shadow hover:bg-gray-800 transition">
                   {item.button || "Add to Cart"}
                 </button>
               </Link>

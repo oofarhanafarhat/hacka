@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/components/context/cartContext";
 
 // ✅ Google font
 const inter = Inter({ subsets: ["latin"] });
@@ -52,9 +53,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-white text-gray-900 dark:bg-black dark:text-white transition-colors duration-300`}
       >
+      <CartProvider>
         <Navbar />
         <main className="min-h-screen px-4 md:px-8 lg:px-16">{children}</main>
         <Footer />
+      </CartProvider>
       </body>
     </html>
   );

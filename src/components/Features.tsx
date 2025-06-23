@@ -50,7 +50,7 @@ export default async function FeatureSection() {
                 <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
                   {item.heading}
                 </h3>
-                <p className="text-xl font-bold text-blue-600">
+                <p className="text-xl font-bold text-gray-200">
                   Rs. {item.price}
                 </p>
               </div>

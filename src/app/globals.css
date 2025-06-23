@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html {
   scroll-behavior: smooth;
 }
@@ -13,7 +14,7 @@ body {
 
 @layer components {
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6;
+    @apply text-3xl md:text-2xl font-bold text-gray-800 dark:text-gray-600 mb-6;
   }
 
   .btn-primary {

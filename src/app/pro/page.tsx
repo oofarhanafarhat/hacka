@@ -5,7 +5,8 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
-
+import { FiShoppingCart } from "react-icons/fi";
+import Link from "next/link";
 interface ProductItem {
   _id: string;
   title: string;
@@ -63,11 +64,11 @@ const handleAddToCart = async (item: ProductItem) => {
     <div className="w-full max-w-[1400px] mx-auto px-4 py-10">
       <h1 className="text-4xl font-bold text-center lg:text-start mb-10">All Products</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
         {data.map((item) => (
           <div
             key={item._id}
-            className="bg-white rounded-lg shadow hover:shadow-md transition p-4 flex flex-col"
+            className=" rounded-lg shadow hover:shadow-md transition p-4 flex flex-col bg-gray-100 hover:translate-y-5"
           >
             <div className="w-full h-[200px] rounded-lg overflow-hidden flex justify-center items-center bg-gray-100">
               <Image
@@ -80,23 +81,25 @@ const handleAddToCart = async (item: ProductItem) => {
             </div>
 
             <div className="mt-4 flex justify-between items-center">
-              <h2 className="text-lg font-semibold">{item.title}</h2>
-              <Image src="/cart1.png" alt="Cart" width={20} height={20} />
+      <h2 className="text-md font-semibold text-gray-800 ">{item.title}</h2>
+
+
+               <FiShoppingCart className="w[20px] text-gray-800" />
             </div>
 
             <p className="text-xl font-bold mt-1 text-gray-800">${item.price}</p>
 
-            <button
+           <Link href={"/cart"}> <button
               onClick={() => handleAddToCart(item)}
               disabled={loadingId === item._id}
               className={`w-full mt-4 py-2 ${
                 loadingId === item._id
                   ? "bg-blue-300 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700"
+                  : "bg-gray-400 hover:bg-gray-800"
               } text-white rounded transition`}
             >
               {loadingId === item._id ? "Adding..." : item.button || "Add to Cart"}
-            </button>
+            </button></Link>
           </div>
         ))}
       </div>

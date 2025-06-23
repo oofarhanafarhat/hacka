@@ -6,21 +6,21 @@ const AboutPage = () => {
     <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-10">
       
       {/* Hero Section */}
-      <section className="flex flex-col lg:flex-row justify-between items-center gap-6">
+      <section className="flex flex-col lg:flex-row justify-evenly items-center gap-6">
         <Image
           src="/text.png"
           width={672}
           height={470}
           alt="About Comforty brand text"
           priority
-          className="w-full max-w-xl"
+          className="w-full max-w-xl  hover:translate-y-4"
         />
         <Image
           src="/f1.png"
           width={600}
           height={420}
           alt="Comfortable Chair"
-          className="rounded-lg w-full max-w-md"
+          className="rounded-lg w-full max-w-md  hover:translate-y-4"
           priority
         />
       </section>
@@ -34,7 +34,7 @@ const AboutPage = () => {
           height={244}
           alt="Core values and uniqueness"
           priority
-          className="mx-auto w-full"
+          className="mx-auto w-full hover:translate-y-4"
         />
       </section>
 
@@ -49,7 +49,7 @@ const AboutPage = () => {
             { name: "The Brandy Chair", image: "/f4.png" },
             { name: "The Candy Chair", image: "/f2.png" },
           ].map((product, index) => (
-            <div key={index} className="rounded-lg shadow-lg overflow-hidden bg-white">
+            <div key={index} className="rounded-lg shadow-lg overflow-hidden bg-white hover:translate-y-3">
               <Image
                 src={product.image}
                 alt={product.name}
