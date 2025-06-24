@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { usePathname } from "next/navigation"; // ✅ New import
 
 interface CartContextType {
   cartCount: number;
@@ -16,38 +17,36 @@ const CartContext = createContext<CartContextType>({
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartCount, setCartCount] = useState(0);
+  const pathname = usePathname(); // ✅ Call hook here
 
-  const fetchCartCount = async () => {
+  const refreshCart = async () => {
     try {
-      const res = await fetch("/api/cart");
+      const res = await fetch("/api/cart", { cache: "no-store" });
       const data = await res.json();
-
-      if (Array.isArray(data)) {
-        setCartCount(data.length);
-      } else if (Array.isArray(data.data)) {
-        setCartCount(data.data.length);
-      } else {
-        setCartCount(0);
-      }
-    } catch (error) {
-      console.error("Cart count error:", error);
-      setCartCount(0);
+      setCartCount(data?.length || 0);
+    } catch (err) {
+      console.error("❌ Failed to fetch cart count", err);
     }
   };
 
-  useEffect(() => {
-    fetchCartCount();
+ useEffect(() => {
+  const hasPaid = sessionStorage.getItem("hasPaid");
 
-    const handleCartUpdated = () => {
-      fetchCartCount();
-    };
-
-    window.addEventListener("cart-updated", handleCartUpdated);
-    return () => window.removeEventListener("cart-updated", handleCartUpdated);
-  }, []);
+  if (pathname === "/success") {
+    setCartCount(0);
+    sessionStorage.setItem("hasPaid", "true"); // 🔒 Mark as paid (frontend-only)
+  } else {
+    if (hasPaid === "true") {
+      // Don't fetch again after success
+      setCartCount(0);
+    } else {
+      refreshCart(); // Normal fetch
+    }
+  }
+}, [pathname]);
 
   return (
-    <CartContext.Provider value={{ cartCount, refreshCart: fetchCartCount, setCartCount }}>
+    <CartContext.Provider value={{ cartCount, refreshCart, setCartCount }}>
       {children}
     </CartContext.Provider>
   );

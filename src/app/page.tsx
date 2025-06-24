@@ -3,8 +3,8 @@
 import FeatureSection from "@/components/Features";
 import HeroSection from "@/components/Hero";
 import Category from "@/components/Category";
-import Product from "@/components/product";
 import Chair from "@/components/chair";
+import Pro from "@/app/pro/page";
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* ✅ Products (no extras) */}
       <section aria-labelledby="products" className="mt-12 mb-16">
-        <Product showExtras={false} />
+        <Pro />
       </section>
     </main>
   );

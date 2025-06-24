@@ -81,21 +81,24 @@ export async function DELETE(req: NextRequest) {
   try {
     const body = await req.json();
 
+    // If `id` is provided → delete single item
+    if (body.id) {
+      await db.delete(cartItems).where(eq(cartItems.id, body.id));
+      return NextResponse.json({ success: true, message: "Item removed from cart." });
+    }
+
+    // If `clearAll` is true → delete all cart items
     if (body.clearAll) {
-      await db.delete(cartItems); // If using Clerk: add `where(eq(cartItems.userId, userId))`
-      return NextResponse.json({ success: true });
+      await db.delete(cartItems);
+      return NextResponse.json({ success: true, message: "All cart items cleared." });
     }
 
-    const { id } = body;
-    if (!id) {
-      return NextResponse.json({ error: "Missing cart item id" }, { status: 400 });
-    }
+    // If nothing provided
+    return NextResponse.json({ error: "Missing cart item id or clearAll flag." }, { status: 400 });
 
-    await db.delete(cartItems).where(eq(cartItems.id, id));
-    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("DELETE error:", error);
-    return NextResponse.json({ error: "Failed to delete item" }, { status: 500 });
+    console.error("❌ DELETE error in /api/cart:", error);
+    return NextResponse.json({ error: "Failed to delete cart item(s)." }, { status: 500 });
   }
 }
 

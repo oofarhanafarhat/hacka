@@ -7,6 +7,8 @@ import { urlFor } from "@/sanity/lib/image";
 import { useRouter } from "next/navigation";
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link";
+import { useCart } from "@/components/context/cartContext"; // ✅ Import this
+
 interface ProductItem {
   _id: string;
   title: string;
@@ -19,6 +21,8 @@ const Product = () => {
   const [data, setData] = useState<ProductItem[]>([]);
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const router = useRouter();
+  const { refreshCart } = useCart(); // ✅ Hook here
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -42,13 +46,14 @@ const handleAddToCart = async (item: ProductItem) => {
         productId: item._id,
         price: item.price,
         quantity: 1,
-        title: item.title, // ✅ Add title
-        imageUrl: urlFor(item.image).url(), // ✅ Add image URL
+        title: item.title,
+        imageUrl: urlFor(item.image).url(),
       }),
     });
 
     if (res.ok) {
-      router.push("/cart");
+      refreshCart(); // ✅ Update the Navbar cart count
+      // router.push("/cart"); ← Optional — if you want to stay on page, REMOVE this
     } else {
       console.error("Add to cart failed");
     }
@@ -58,6 +63,8 @@ const handleAddToCart = async (item: ProductItem) => {
     setLoadingId(null);
   }
 };
+
+
 
 
   return (

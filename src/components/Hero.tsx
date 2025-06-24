@@ -31,8 +31,8 @@ export default async function HeroSection() {
             {item.subheading}
           </p>
           <Link
-            href="#"
-            className="inline-block bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-all duration-300"
+            href="/pro"
+            className="inline-block bg-gray-700 text-white px-6 py-3 rounded-md hover:bg-gray-400 transition-all duration-300 border-spacing-2 border-red-600 hover:border-gray-950"
           >
             {item.buttonText}
           </Link>

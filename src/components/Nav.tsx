@@ -66,7 +66,8 @@ export default function Navbar() {
           </div>
 
           {/* Navigation Links */}
-          <div className={`${isOpen ? "block" : "hidden"} md:flex items-center space-y-4 md:space-y-0 md:space-x-8`}>
+<div className={`${isOpen ? "flex flex-col space-y-4" : "hidden"} md:flex md:flex-row md:items-center md:space-x-8`}>
+
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/pro" className="nav-link">Shop</Link>
             <Link href="/shop" className="nav-link">Product</Link>
