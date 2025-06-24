@@ -68,58 +68,61 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
   };
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-4 lg:px-0">
-      <div className="py-6">
-        <h1 className="text-4xl font-bold text-center lg:text-start">All Products</h1>
-      </div>
-
-      {loading ? (
-        <p className="text-center text-gray-600 py-10">Loading products...</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6">
-          {data.map((item) => (
-            <div
-              key={item._id}
-              className="rounded-lg shadow hover:shadow-md transition p-4 flex flex-col bg-gray-100 hover:translate-y-5"
-            >
-                 <div className="relative w-full h-48 sm:h-65 md:h-75 lg:h-80 rounded-lg overflow-hidden bg-gray-100">
-                            {item.image ? (
-                              <Image
-                                src={urlFor(item.image).url()}
-                                alt={item.title}
-                                fill
-                                className="object-cover"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                                No Image
-                              </div>
-                            )}
-                          </div>
-
-              <div className="mt-4 flex justify-between items-center">
-                <h2 className="text-md font-semibold text-gray-800">{item.title}</h2>
-                <FiShoppingCart className="text-gray-800 text-lg" />
-              </div>
-
-              <p className="text-xl font-bold mt-1 text-gray-800">${item.price}</p>
-
-              <button
-                onClick={() => handleAddToCart(item)}
-                disabled={loadingId === item._id}
-                className={`w-full mt-4 py-2 ${
-                  loadingId === item._id
-                    ? "bg-blue-300 cursor-not-allowed"
-                    : "bg-gray-400 hover:bg-gray-800"
-                }"inline-block bg-gray-100 px-6 py-3 border-2 border-gray-500 text-gray-950 font-semibold rounded-lg transition duration-200 ease-in-out transform hover:bg-gray-800 hover:text-gray-50 hover:scale-105 active:scale-95ne-block ">
-`}
-              >
-                {loadingId === item._id ? "Adding..." : item.button || "Add to Cart"}
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="w-full max-w-[1400px] mx-auto px-4 lg:px-0 py-10">
+           <h1 className="text-4xl font-bold text-center lg:text-start mb-10">
+             All Products
+           </h1>
+     
+           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+             {data.map((item) => (
+               <div
+                 key={item._id}
+                 className="rounded-xl bg-white shadow-md hover:shadow-lg transition-transform duration-300 p-4 flex flex-col"
+               >
+                 {/* Image */}
+                 <div className="w-full aspect-[4/3] relative rounded-lg overflow-hidden">
+                   {item.image && (
+                     <Image
+                       src={urlFor(item.image).url()}
+                       alt={item.title || "Product Image"}
+                       fill
+                       className="object-cover"
+                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                     />
+                   )}
+                 </div>
+     
+                 {/* Title and Icon */}
+                 <div className="mt-4 flex justify-between items-center">
+                   <h2 className="text-lg font-semibold text-gray-800">
+                     {item.title}
+                   </h2>
+                   <FiShoppingCart className="text-xl text-gray-600" />
+                 </div>
+     
+                 {/* Price */}
+                 <p className="text-xl font-bold text-gray-900 mt-1">
+                   ${item.price}
+                 </p>
+     
+                 {/* Button */}
+                 <Link href="/cart" className="mt-auto">
+                   <button
+                     onClick={() => handleAddToCart(item)}
+                     disabled={loadingId === item._id}
+                     className={`w-full mt-4 py-2 rounded-lg border-2 text-sm font-semibold transition duration-200 ease-in-out transform 
+                     ${
+                       loadingId === item._id
+                         ? "bg-blue-300 border-blue-300 cursor-not-allowed"
+                         : "bg-gray-900 text-white border-gray-900 hover:bg-white hover:text-gray-900"
+                     } hover:scale-105 active:scale-95`}
+                   >
+                     {loadingId === item._id ? "Adding..." : item.button || "Add to Cart"}
+                   </button>
+                 </Link>
+               </div>
+             ))}
+           </div>
 
       {showExtras && (
         <>

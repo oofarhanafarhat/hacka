@@ -66,24 +66,28 @@ export default function Navbar() {
           </div>
 
           {/* Navigation Links */}
-<div className={`${isOpen ? "flex flex-col items-start  justify-start space-y-4" : "hidden"} md:flex md:flex-row md:items-center md:space-x-8`}>
+<div
+  className={`${
+    isOpen ? "space-y-4" : "hidden"
+  } flex flex-col items-start md:flex md:flex-row md:items-center md:space-x-8 w-full`}
+>
+  <Link href="/" className="text-gray-800 dark:text-white hover:underline">Home</Link>
+  <Link href="/pro" className="text-gray-800 dark:text-white hover:underline">Shop</Link>
+  <Link href="/shop" className="text-gray-800 dark:text-white hover:underline">Product</Link>
+  <Link href="/faq" className="text-gray-800 dark:text-white hover:underline">Pages</Link>
+  <Link href="/about" className="text-gray-800 dark:text-white hover:underline">About</Link>
 
-            <Link href="/" className="nav-link">Home</Link>
-            <Link href="/pro" className="nav-link">Shop</Link>
-            <Link href="/shop" className="nav-link">Product</Link>
-            <Link href="/faq" className="nav-link">Pages</Link>
-            <Link href="/about" className="nav-link">About</Link>
+  {/* Mobile Cart Icon */}
+  <Link href="/cart" className="relative md:hidden">
+    <FiShoppingCart className="text-2xl" />
+    {cartCount > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+        {cartCount}
+      </span>
+    )}
+  </Link>
+</div>
 
-            {/* Mobile Cart Icon */}
-            <Link href="/cart" className="relative md:hidden">
-              <FiShoppingCart className="text-2xl" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-          </div>
         </div>
       </div>
     </nav>
