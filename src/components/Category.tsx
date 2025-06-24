@@ -33,9 +33,9 @@ export default async function Category() {
                 <Image
                   src={urlFor(item.image).url()}
                   alt={item.heading || "Category Image"}
-                  width={300}
-                  height={300}
-                  className="rounded-lg object-cover w-full h-[220px]"
+                  width={400}
+                  height={400}
+                  className="rounded-lg object-cover w-full h-[300px]"
                 />
               )}
               <div className="mt-4">

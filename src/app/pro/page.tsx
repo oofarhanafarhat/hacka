@@ -36,33 +36,33 @@ const Product = () => {
     fetchProducts();
   }, []);
 
-const handleAddToCart = async (item: ProductItem) => {
-  setLoadingId(item._id);
-  try {
-    const res = await fetch("/api/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        productId: item._id,
-        price: item.price,
-        quantity: 1,
-        title: item.title,
-        imageUrl: urlFor(item.image).url(),
-      }),
-    });
+  const handleAddToCart = async (item: ProductItem) => {
+    setLoadingId(item._id);
+    try {
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: item._id,
+          price: item.price,
+          quantity: 1,
+          title: item.title,
+          imageUrl: urlFor(item.image).url(),
+        }),
+      });
 
-    if (res.ok) {
-      refreshCart(); // ✅ Update the Navbar cart count
-      // router.push("/cart"); ← Optional — if you want to stay on page, REMOVE this
-    } else {
-      console.error("Add to cart failed");
+      if (res.ok) {
+        refreshCart(); // ✅ Update the Navbar cart count
+        // router.push("/cart"); ← Optional — if you want to stay on page, REMOVE this
+      } else {
+        console.error("Add to cart failed");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    } finally {
+      setLoadingId(null);
     }
-  } catch (error) {
-    console.error("Error adding to cart:", error);
-  } finally {
-    setLoadingId(null);
-  }
-};
+  };
 
 
 
@@ -77,33 +77,38 @@ const handleAddToCart = async (item: ProductItem) => {
             key={item._id}
             className=" rounded-lg shadow hover:shadow-md transition p-4 flex flex-col bg-gray-100 hover:translate-y-5"
           >
-            <div className="w-full h-[200px] rounded-lg overflow-hidden flex justify-center items-center bg-gray-100">
-              <Image
-                src={urlFor(item.image)?.url() || "/placeholder.png"}
-                alt={item.title}
-                width={312}
-                height={200}
-                className="object-cover w-full h-full"
-              />
+            <div className="relative w-full h-48 sm:h-65 md:h-75 lg:h-80 rounded-lg overflow-hidden bg-gray-100">
+              {item.image ? (
+                <Image
+                  src={urlFor(item.image).url()}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                  No Image
+                </div>
+              )}
             </div>
 
+
             <div className="mt-4 flex justify-between items-center">
-      <h2 className="text-md font-semibold text-gray-800 ">{item.title}</h2>
+              <h2 className="text-md font-semibold text-gray-800 ">{item.title}</h2>
 
 
-               <FiShoppingCart className="w[20px] text-gray-800" />
+              <FiShoppingCart className="w[20px] text-gray-800" />
             </div>
 
             <p className="text-xl font-bold mt-1 text-gray-800">${item.price}</p>
 
-           <Link href={"/cart"}> <button
+            <Link href={"/cart"}> <button
               onClick={() => handleAddToCart(item)}
               disabled={loadingId === item._id}
-              className={`w-full mt-4 py-2 ${
-                loadingId === item._id
-                  ? "bg-blue-300 cursor-not-allowed"
-                  : "bg-gray-400 hover:bg-gray-800"
-              }"inline-block bg-gray-100 px-6 py-3 border-2 border-gray-500 text-gray-950 font-semibold rounded-lg transition duration-200 ease-in-out transform hover:bg-gray-800 hover:text-gray-50 hover:scale-105 active:scale-95ne-block "
+              className={`w-full mt-4 py-2 ${loadingId === item._id
+                ? "bg-blue-300 cursor-not-allowed"
+                : "bg-gray-400 hover:bg-gray-800"
+                }"inline-block bg-gray-100 px-6 py-3 border-2 border-gray-500 text-gray-950 font-semibold rounded-lg transition duration-200 ease-in-out transform hover:bg-gray-800 hover:text-gray-50 hover:scale-105 active:scale-95ne-block "
 `}
             >
               {loadingId === item._id ? "Adding..." : item.button || "Add to Cart"}

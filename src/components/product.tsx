@@ -82,15 +82,20 @@ const Product = ({ showExtras }: { showExtras?: boolean }) => {
               key={item._id}
               className="rounded-lg shadow hover:shadow-md transition p-4 flex flex-col bg-gray-100 hover:translate-y-5"
             >
-              <div className="w-full h-[200px] rounded-lg overflow-hidden flex justify-center items-center bg-gray-100">
-                <Image
-                  src={urlFor(item.image)?.url() || "/placeholder.png"}
-                  alt={item.title}
-                  width={312}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+                 <div className="relative w-full h-48 sm:h-65 md:h-75 lg:h-80 rounded-lg overflow-hidden bg-gray-100">
+                            {item.image ? (
+                              <Image
+                                src={urlFor(item.image).url()}
+                                alt={item.title}
+                                fill
+                                className="object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-gray-500">
+                                No Image
+                              </div>
+                            )}
+                          </div>
 
               <div className="mt-4 flex justify-between items-center">
                 <h2 className="text-md font-semibold text-gray-800">{item.title}</h2>
