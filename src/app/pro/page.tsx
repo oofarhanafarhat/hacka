@@ -103,7 +103,8 @@ const handleAddToCart = async (item: ProductItem) => {
                 loadingId === item._id
                   ? "bg-blue-300 cursor-not-allowed"
                   : "bg-gray-400 hover:bg-gray-800"
-              } text-white rounded transition`}
+              }"inline-block bg-gray-100 px-6 py-3 border-2 border-gray-500 text-gray-950 font-semibold rounded-lg transition duration-200 ease-in-out transform hover:bg-gray-800 hover:text-gray-50 hover:scale-105 active:scale-95ne-block "
+`}
             >
               {loadingId === item._id ? "Adding..." : item.button || "Add to Cart"}
             </button></Link>
